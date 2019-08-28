@@ -33,6 +33,18 @@ exports.createPages = ({ graphql, actions }) => {
                 title
                 content
                 template
+                acf {
+                  personal_image {
+                    id
+                    source_url
+                  }
+                  personal_info {
+                    Oliver
+                    age
+                    email
+                    city
+                  }
+                }
               }
             }
           }
@@ -84,6 +96,9 @@ exports.createPages = ({ graphql, actions }) => {
                     source_url
                   }
                   content
+                  acf {
+                    portfolio_url 
+                  }
                 }
               }
             }

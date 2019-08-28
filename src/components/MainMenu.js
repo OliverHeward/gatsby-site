@@ -9,6 +9,9 @@ const MainMenuWrapper = styled.div`
     justify-content: center;
     background-color: #663399;
     padding: 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 200;
 `
 
 const MainMenuInner = styled.div`

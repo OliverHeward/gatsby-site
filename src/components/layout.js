@@ -10,21 +10,21 @@ import MainMenu from './MainMenu'
 import { Helmet } from 'react-helmet'
 import {graphql, StaticQuery} from 'gatsby'
 import styled, {createGlobalStyle} from 'styled-components'
+import Footer from '../components/Footer';
 
 const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 
   body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
   }
 `
 
 const LayoutWrapper = styled.div`
-  max-width: 960px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding-top: 56px;
 `
 
 const Layout = ({ children }) => (
@@ -47,6 +47,7 @@ const Layout = ({ children }) => (
     <LayoutWrapper>
       {children}
     </LayoutWrapper>
+    <Footer />
   </div>
 )
 
