@@ -113,6 +113,7 @@ module.exports = {
           "**/users",
           "**/menus",
           "**/portfolio",
+          "**/blog",
           "**/logo",
           "**/favicon",
         ],

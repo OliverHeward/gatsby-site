@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaReact, FaWordpress } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaReact, FaWordpress } from 'react-icons/fa'
 import GatsbyIcon from '../images/gatsby-icon.png'
 import GraphIcon from '../images/graphql.svg'
 
@@ -70,11 +70,6 @@ const Footer = () => (
                 <FooterLink href="https://linkedin.com/oliverheward"><LinkedIn /></FooterLink>
                 <FooterLink href="https://github.com/oliverheward"><Github /></FooterLink>
             </SocialContainer>
-            <ContactContainer>
-                <Title>Contact</Title>
-                <FooterLink href="mailto:oliver@hewy.dev"><FaEnvelope /><LinkText>Oliver@hewy.dev</LinkText></FooterLink>
-                <FooterLink><FaPhone /><LinkText>07773 690762</LinkText></FooterLink>
-            </ContactContainer>
             <ContactContainer>
                 <SmallTit>This site is powered by</SmallTit>
                 <Powered>

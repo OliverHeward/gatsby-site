@@ -6,11 +6,10 @@ const FeaturedImage = styled.img`
     max-width: 100vw !important;
     margin: 0 auto;
     padding: 0;
-    opacity: .8;
+    opacity: .9;
     max-height: 100%;
 `
 const HeroGrad = styled.div`
-    background: #000;
     padding: 0;
     margin: 0;
 `

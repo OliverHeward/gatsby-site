@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const PortfolioItemsWrapper = styled.div`
     display: flex;
     justify-content: center;
+    flex-flow: row wrap;
 `
 
 const PortfolioItem = styled.div`
@@ -12,8 +13,7 @@ const PortfolioItem = styled.div`
     display: block;
     padding: 0px;
     margin: 15px;
-    border: 1px solid #ccc;
-    box-shadow: 0px 0px 5px #eee;
+    box-shadow: 0px 0px 8px #ccc;
 `
 
 const PortfolioImage = styled.img`
@@ -25,7 +25,7 @@ const PortfolioImage = styled.img`
 const Title = styled.h2`
   text-transform: uppercase;
   font-size: 20px;
-  margin: 5px 0 10px;
+  margin: 5px 0 5px;
   padding: 0;
 `
 
@@ -33,14 +33,24 @@ const LinkTo = styled(Link)`
   margin: 5px 0;
   background-color: #663399;
   color: white;
+  border: 1px solid #663399;
   padding: 5px 15px;
   border-radius: 15px;
   text-decoration: none;
+  transition: all .3s ease;
+  &:hover {
+    background-color: transparent;
+    color: #663399;
+  }
 `
 
 const TextWrap = styled.div`
-  padding: 5px 15px 15px;
+  padding: 5px 15px 20px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
 `
 
 const PortfolioItems = () => {

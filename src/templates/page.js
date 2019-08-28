@@ -41,14 +41,25 @@ const MailLink = styled.a`
 const MailText = styled.p`
     margin: 0;
     padding: 0 0 0 5px;
-    color: purple;
+    color: #663399;
+    transition: all .3s ease;
+
+    &:hover {
+        color: #00d8ff;
+    }
 `
 
 const Headline = styled.h1`
     font-size: 40px;
-    color: purple;
+    color: #3a3a3a;
     text-transform: uppercase;
     margin: 0;
+    margin-bottom: 20px;
+
+    &:first-letter {
+        color: #663399;
+        border-bottom: 5px solid #663399;
+    }
 `
 
 export default ({pageContext}) => (
