@@ -7,6 +7,7 @@ import GraphIcon from '../images/graphql.svg'
 const MainFooter = styled.section`
     background-color: #3a3a3a;
     color: white;
+    width: 100vw;
 `
 const FooterContainer = styled.div`
     max-width: 930px;

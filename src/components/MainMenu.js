@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, StaticQuery, Link } from 'gatsby'
 import styled from 'styled-components'
 import SiteInfo from './SiteInfo'
+import BurgerMenu from './BurgerMenu'
 
 const MainMenuWrapper = styled.div`
     display: flex;
@@ -22,11 +23,23 @@ const MainMenuInner = styled.div`
     height: 100%;
 `
 
-const MenuItem = styled(Link)`
+const MenuItem = styled.a`
     color: white;
-    display: block;
+    display: none;
     padding: 8px 16px;
     text-decoration: none;
+
+    @media screen and (min-width: 650px) {
+      display: block;
+    }
+`
+
+const MobileMenu = styled.div`
+  display: block;
+
+  @media screen and (min-width: 650px) {
+    display: none;
+}
 `
 
 const MainMenu = () => (
@@ -50,13 +63,16 @@ const MainMenu = () => (
       }
     `} render={props => (
         <MainMenuWrapper>
-            <MainMenuInner>
+          <MainMenuInner>
             <SiteInfo />
             {props.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(item => (
-                <MenuItem to={item.object_slug} key={item.title}>
+                <MenuItem href={item.object_slug} key={item.title}>
                     {item.title}
                 </MenuItem>
             ))}
+            <MobileMenu>
+              <BurgerMenu />
+            </MobileMenu>
             </MainMenuInner>
         </MainMenuWrapper>
     )} />

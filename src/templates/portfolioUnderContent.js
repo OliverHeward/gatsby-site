@@ -9,10 +9,20 @@ const PageWrap = styled.div`
     margin: 0 auto;
 `
 
+const Title = styled.h1`
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 35px;
+
+    @media screen and (min-width: 1024px) {
+        font-size: 50px;
+    }
+`
+
 export default ({pageContext}) => (
     <Layout>
         <PageWrap>
-            <h1 dangerouslySetInnerHTML={{__html: pageContext.title}} />
+            <Title>{pageContext.title}</Title>
             <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
             <PortfolioItems/>
         </PageWrap>

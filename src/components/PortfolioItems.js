@@ -9,11 +9,17 @@ const PortfolioItemsWrapper = styled.div`
 `
 
 const PortfolioItem = styled.div`
-    width: 300px;
+    width: 280px;
     display: block;
     padding: 0px;
     margin: 15px;
     box-shadow: 0px 0px 8px #ccc;
+    transition: all .3s ease;
+    overflow: hidden;
+
+    &:hover {
+      box-shadow: 0 0 15px #3a3a3a;
+    }
 `
 
 const PortfolioImage = styled.img`
@@ -27,25 +33,37 @@ const Title = styled.h2`
   font-size: 20px;
   margin: 5px 0 5px;
   padding: 0;
+  color: #000;
 `
 
 const LinkTo = styled(Link)`
   margin: 5px 0;
-  background-color: #663399;
-  color: white;
-  border: 1px solid #663399;
-  padding: 5px 15px;
-  border-radius: 15px;
+  color: #663399;
   text-decoration: none;
-  transition: all .3s ease;
+  transition: all .5s ease;
   &:hover {
-    background-color: transparent;
-    color: #663399;
+    padding: 0 15px;
+    border-left: 1px solid #663399;
+    border-right: 1px solid #663399;
+  }
+`
+
+const ProjLink = styled(Link)`
+  text-decoration: none;
+  color: #663399;
+
+  &:hover {
+    img {
+      transform: scale(1.1);
+      transition: all .3s ease-in-out;
+
+    }
   }
 `
 
 const TextWrap = styled.div`
   padding: 5px 15px 20px;
+  height: auto;
   text-align: center;
   display: flex;
   align-items: center;
@@ -73,13 +91,15 @@ const PortfolioItems = () => {
             }
           }
         `} render={props => ( <PortfolioItemsWrapper> { props.allWordpressWpPortfolio.edges.map(portfolioItem => (
-            <PortfolioItem key={portfolioItem.id}>
-                <PortfolioImage src={portfolioItem.node.featured_media.source_url} alt="Thumbnail" />
-                <TextWrap>
-                  <Title>{portfolioItem.node.title}</Title>
-                  <LinkTo to={`/portfolio/${portfolioItem.node.slug}`}>Read More</LinkTo>
-                </TextWrap>
-            </PortfolioItem>
+            <ProjLink to={`/portfolio/${portfolioItem.node.slug}`} key={portfolioItem.node.id}>
+              <PortfolioItem key={portfolioItem.id}>
+                  <PortfolioImage src={portfolioItem.node.featured_media.source_url} alt="Thumbnail" />
+                  <TextWrap>
+                    <Title>{portfolioItem.node.title}</Title>
+                    <LinkTo to={`/portfolio/${portfolioItem.node.slug}`}>View Project</LinkTo>
+                  </TextWrap>
+              </PortfolioItem>
+            </ProjLink>
         ))}
         </PortfolioItemsWrapper> )} />
     )

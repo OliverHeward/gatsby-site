@@ -135,6 +135,7 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 slug
                 title
+                content
                 author {
                   id
                   name
