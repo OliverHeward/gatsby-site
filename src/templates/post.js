@@ -2,6 +2,8 @@ import React from 'react'
 import Layout from '../components/layout'
 import styled from 'styled-components'
 import Moment from 'react-moment'
+import { createBrowserHistory } from 'history'
+import { FaArrowLeft } from 'react-icons/fa'
 
 const BlogContainer = styled.div`
     max-width: 930px;
@@ -39,13 +41,43 @@ const Momemt = styled(Moment)`
     color: #663399;
 `
 
-export default ({pageContext}) => {
+const BackButton = styled.button`
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #3a3a3a;
 
+    &:hover {
+        border: 1px solid #663399;
+        transition: all .3s ease;
+        color: #663399;
+    }
+`
+
+const ArrowLeft = styled(FaArrowLeft)`
+    margin-right: 10px;
+`
+
+
+export default ({pageContext}) => {
+    const history = createBrowserHistory();
+    const location = history.location;
+    const unlisten = history.listen((location, action) => {
+        console.log(action, location.pathname, location.state);
+    });
+    const onGoBack = () => {
+        history.go(-1);
+        unlisten();
+    };
     const dateToFormat = pageContext.date;
 
     return (
     <Layout>
         <BlogContainer>
+            <BackButton onClick={onGoBack}><ArrowLeft/> Go back!</BackButton>
             <UpperContent>
                 <BlogTitle>{pageContext.title}</BlogTitle>
                 <Momemt format="DD/MM/YYYY">{dateToFormat}</Momemt>

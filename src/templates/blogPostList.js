@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
 import styled from 'styled-components'
-import {graphql, StaticQuery, Link} from 'gatsby'
+import {Link} from 'gatsby'
 import Moment from 'react-moment'
 
 const ContentWrapper = styled.section`
@@ -83,48 +83,52 @@ const Date = styled(Moment)`
     font-size: 12px;
 `
 
-const Blog = () => {
-    return (
+const Pagination = styled.div`
+    display: flex;
+    justify-content: flex-end;
+`
+
+const PageNumberWrapper = styled.div`
+    border: 1px solid #663399;
+    margin: 5px;
+    border-radius: 5px;
+    background: ${props => props.isCurrentPage ? '#663399' : 'white'}
+    box-shadow: ${props => props.isCurrentPage ? '0 0 5px #ccc' : null}
+`
+
+const PageNumber = styled(Link)`
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: ${props => props.isCurrentPage ? '#fff' : '#663399'}
+`
+
+export default ({pageContext}) => (
     <Layout>
         <ContentWrapper>
             <Title>Blog</Title>
-                <StaticQuery query={graphql`
-                {
-                    allWordpressPost {
-                    edges {
-                        node {
-                        id
-                        slug
-                        title
-                        author {
-                            id
-                            name
-                        }
-                        date
-                        excerpt
-                        link
-                        featured_media {
-                            source_url
-                        }
-                        } 
-                    }
-                    }
-                }
-                `} render={props => (<BlogWrapper> {props.allWordpressPost.edges.map(blogItem => (
-                    <PostWrap to={`/blog/${blogItem.node.slug}`} key={blogItem.node.title}>
-                        <TitleFade>
-                            <PostTitle>{blogItem.node.title}</PostTitle>
-                            <Date format="DD/MM/YYYY">{blogItem.node.date}</Date>
-                         </TitleFade>
-                        <ImageWrap>
-                            <Image src={blogItem.node.featured_media.source_url} />
-                         </ImageWrap>
-                    </PostWrap>
-                ))}
-                </BlogWrapper> )} />
+            <BlogWrapper>
+           {pageContext.posts.map(post => (
+               <PostWrap key={post.node.id} to={`/post/${post.node.slug}`}>
+                   <TitleFade>
+                    <PostTitle>{post.node.title}</PostTitle>
+                    <Date format="DD/MM/YY">{post.node.date}</Date>
+                   </TitleFade>
+                   <ImageWrap>
+                       <Image src={post.node.featured_media.source_url} />
+                   </ImageWrap>
+               </PostWrap>
+           ))}
+           </BlogWrapper>
+           <Pagination>
+           {Array.from({length: pageContext.numberOfPages}).map((page, index) => (
+               <PageNumberWrapper key={index} isCurrentPage={index + 1 === pageContext.currentPage}>
+                   <PageNumber to={index === 0 ? '/blog' : `/blog/${index + 1}`} isCurrentPage={index + 1 === pageContext.currentPage}>
+                        {index + 1}
+                   </PageNumber>
+               </PageNumberWrapper>
+           ))}
+           </Pagination>
         </ContentWrapper>
     </Layout>
-    )
-};
-
-export default Blog
+);

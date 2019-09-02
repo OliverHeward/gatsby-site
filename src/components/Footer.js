@@ -50,9 +50,21 @@ const SmallTit = styled.h3`
 `
 const LinkedIn = styled(FaLinkedin)`
     font-size: 30px;
+
+    &:hover {
+        transform: scale(1.1);
+        transition: all .3s ease;
+        color: #0077b5;
+    }
 `
 const Github = styled(FaGithub)`
     font-size: 30px;
+
+    &:hover {
+        color: #6e5494;
+        transform: scale(1.1);
+        transition: all .3s ease;
+    }
 `
 const Powered = styled.div`
     display: flex;
@@ -68,8 +80,8 @@ const Footer = () => (
     <MainFooter>
         <FooterContainer>
             <SocialContainer>
-                <FooterLink href="https://linkedin.com/oliverheward"><LinkedIn /></FooterLink>
-                <FooterLink href="https://github.com/oliverheward"><Github /></FooterLink>
+                <FooterLink href="https://www.linkedin.com/in/oliver-heward/" target="_blank"><LinkedIn /></FooterLink>
+                <FooterLink href="https://github.com/oliverheward" target="_blank"><Github /></FooterLink>
             </SocialContainer>
             <ContactContainer>
                 <SmallTit>This site is powered by</SmallTit>

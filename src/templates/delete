@@ -1,0 +1,35 @@
+ <Title>Blog</Title>
+                <StaticQuery query={graphql`
+                {
+                    allWordpressPost {
+                    edges {
+                        node {
+                        id
+                        slug
+                        title
+                        author {
+                            id
+                            name
+                        }
+                        date
+                        excerpt
+                        link
+                        featured_media {
+                            source_url
+                        }
+                        } 
+                    }
+                    }
+                }
+                `} render={props => (<BlogWrapper> {props.allWordpressPost.edges.map(blogItem => (
+                    <PostWrap to={`/blog/${blogItem.node.slug}`} key={blogItem.node.title}>
+                        <TitleFade>
+                            <PostTitle>{blogItem.node.title}</PostTitle>
+                            <Date format="DD/MM/YYYY">{blogItem.node.date}</Date>
+                         </TitleFade>
+                        <ImageWrap>
+                            <Image src={blogItem.node.featured_media.source_url} />
+                         </ImageWrap>
+                    </PostWrap>
+                ))}
+                </BlogWrapper> )} />

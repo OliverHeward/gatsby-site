@@ -1,6 +1,11 @@
 import React from 'react'
 import Layout from '../components/layout'
+import { createBrowserHistory } from 'history'
 import styled from 'styled-components'
+import { FaArrowLeft } from 'react-icons/fa'
+
+
+// LEAN createBrowserHistory into an AUX/HOC/Function component
 
 const FeaturedImage = styled.img`
     max-width: 100%;
@@ -54,18 +59,54 @@ const Button = styled.a`
         transition: all .3s ease-in-out;
     }
 `
+const BackButton = styled.a`
+    background-color: #663399;
+    font-size: 20px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    padding: 5px 5px 5px;
 
-export default ({pageContext}) => (
-    <Layout>
-        <Title>{pageContext.title}</Title>  
-        <HeroGrad>
-            <FeaturedImage src={pageContext.featured_media.source_url} />
-        </HeroGrad>
-        <ContentWrapper>
-            <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
-            <Button href={pageContext.acf.portfolio_url} target="_blank">
-                Visit Site
-            </Button>
-        </ContentWrapper>
-    </Layout>
-);
+    position: fixed;
+    top: 58px;
+    left: 5%;
+`
+
+
+const ArrowLeft = styled(FaArrowLeft)`
+    margin-right: 0px;
+`
+
+export default ({pageContext}) => {
+
+    const history = createBrowserHistory();
+    const location = history.location;
+    const uinlisten = history.listen((lcoation, action) => {
+        console.log(action , location.pathname, location.state);
+    });
+
+    const onGoBack = () => {
+        history.go(-1);
+        uinlisten();
+    }
+
+    return(
+        <Layout>
+            <Title>{pageContext.title}</Title>
+            <HeroGrad>
+                <FeaturedImage src={pageContext.featured_media.source_url} />
+            </HeroGrad>
+            <BackButton onClick={onGoBack}><ArrowLeft/> Go back!</BackButton>
+            <ContentWrapper>
+                <div dangerouslySetInnerHTML={{__html: pageContext.content}} />
+                <Button href={pageContext.acf.portfolio_url} target="_blank">
+                    Visit Site
+                </Button>
+            </ContentWrapper>
+        </Layout>
+    )
+};

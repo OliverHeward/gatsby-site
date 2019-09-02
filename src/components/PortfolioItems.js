@@ -14,11 +14,16 @@ const PortfolioItem = styled.div`
     padding: 0px;
     margin: 15px;
     box-shadow: 0px 0px 8px #ccc;
-    transition: all .3s ease;
+    transition: all .4s ease;
     overflow: hidden;
 
     &:hover {
       box-shadow: 0 0 15px #3a3a3a;
+
+      h2 {
+        transform: scale(1.1);
+        transition: all .3s ease;
+      }
     }
 `
 
@@ -56,13 +61,12 @@ const ProjLink = styled(Link)`
     img {
       transform: scale(1.1);
       transition: all .3s ease-in-out;
-
     }
   }
 `
 
 const TextWrap = styled.div`
-  padding: 5px 15px 20px;
+  padding: 20px 15px 20px;
   height: auto;
   text-align: center;
   display: flex;
